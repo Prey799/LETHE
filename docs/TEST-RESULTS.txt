@@ -1,0 +1,24 @@
+LETHE ONE 0.7.2 — 2026-10-15
+
+Observed: user startup log fails at SslStream.AuthenticateAsClient / SSPI,
+before NaiveProxy launch. The original log lacks the inner SSPI reason.
+Fix: remove the separate Schannel TLS prerequisite; retain physical-route/TCP
+checks and mandatory real HTTPS through managed NaiveProxy before TUN launch.
+NaiveProxy certificate verification is unchanged; no insecure option added.
+
+PASS: actual local TCP listener accepted without requiring TLS on this preflight.
+PASS: wrong physical source and closed TCP port rejected.
+PASS: mocked failed/incorrect-egress proxy verification rejected; correct result accepted.
+PASS: proxy verification uses managed SOCKS and precedes TUN launch.
+PASS: actual Entry-One runner with a synthetic failing START script preserves
+      error detail and stage, returns failure, redacts credential URL, logs version 0.7.2.
+PASS: LETHE.exe x64 GUI compilation with .NET Framework 4.8 TargetFrameworkAttribute.
+PASS: Lethe.Ui.dll compilation and PowerShell syntax.
+PASS: archive CRC, file hash manifest, transport engine hashes unchanged from 0.7.1.
+
+NOT RUN HERE: Windows GUI/click handling, actual Windows TLS/NaiveProxy session,
+TUN/routes/UAC/DPAPI and real connection to user's VPS. No user VPS changes made.
+Mocked verification checks control flow only, not live certificate rejection or
+live password authentication. Those remain the real NaiveProxy engine's checks.
+Windows follow-up steps: docs/WINDOWS-CHECK.md.
+Previous 0.7.1 persistence/dependency/server test report: docs/history/TEST-RESULTS-0.7.1.txt.

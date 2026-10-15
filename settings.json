@@ -1,0 +1,9 @@
+{
+  "vpsIp": "89.208.96.163",
+  "vpsDomain": "089070.duckdns.org",
+  "exitIp": "185.203.4.24",
+  "physicalInterface": "Ethernet",
+  "socksPort": 1080,
+  "tunMtu": 1400,
+  "healthFailLimit": 5
+}

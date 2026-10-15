@@ -1,0 +1,28 @@
+{
+  "log": {"level":"warn", "timestamp":true},
+  "dns": {
+    "servers": [
+      {"type":"https", "tag":"remote-doh", "server":"1.1.1.1", "server_port":443, "path":"/dns-query", "detour":"lethe-socks"}
+    ],
+    "final":"remote-doh",
+    "strategy":"ipv4_only"
+  },
+  "inbounds": [
+    {"type":"tun", "tag":"lethe-tun", "interface_name":"LETHE-TUN",
+     "address":["172.29.51.1/30", "fdfe:dcba:9876:51::1/126"],
+     "mtu":1400, "auto_route":true, "strict_route":true, "dns_mode":"hijack",
+     "route_address":["0.0.0.0/2", "64.0.0.0/2", "128.0.0.0/2", "192.0.0.0/2", "::/2", "4000::/2", "8000::/2", "c000::/2"],
+     "route_exclude_address":["89.208.96.163/32", "10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "fc00::/7", "fe80::/10"]}
+  ],
+  "outbounds": [
+    {"type":"socks", "tag":"lethe-socks", "server":"127.0.0.1", "server_port":1080, "version":"5", "network":"tcp"}
+  ],
+  "route": {
+    "rules":[
+      {"action":"sniff"},
+      {"protocol":"dns", "action":"hijack-dns"},
+      {"network":"udp", "action":"reject"}
+    ],
+    "final":"lethe-socks", "auto_detect_interface":false
+  }
+}

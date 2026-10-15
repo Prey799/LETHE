@@ -1,0 +1,23 @@
+LETHE ONE 0.7.1 — 2026-10-15
+
+PASS: reproduced previous File.Replace($null) failure on an existing file.
+PASS: shared persistence helper: create, replace twice, failure leaves saved file intact.
+PASS: manual VPN credential URL encoding, including special characters.
+PASS: 29 packaged assembly references; no dependency below required version;
+      EXE binding redirects resolve differing references to packaged versions.
+PASS: nested SSH/dependency/socket/key error classification; raw secret-bearing messages omitted.
+PASS: LETHE.exe (Windows x64 GUI) and Lethe.Ui.dll compilation, all PS1 syntax.
+PASS: server and removal unit tests, 29/29 (temporary filesystem, simulated services).
+PASS: archive CRC, SHA256 manifest; bundled transport engines unchanged from 0.7.0.
+
+Changed dependency: System.Buffers 4.5.1 / assembly 4.0.3.0 -> package 4.6.1 /
+assembly 4.0.5.0. Original package fetched from NuGet; SHA256 pinned in lock file.
+No user VPS was contacted or modified.
+
+NOT RUN HERE: Windows WinForms rendering/DPI/click handling, DPAPI and ACL runtime,
+Windows .NET Framework binding at runtime, SSH login to user's VPS, real VPN traffic.
+Test-SettingsPersistence.ps1 includes actual Windows DPAPI create/update/read checks
+for both profile and SSH secrets; skipped on this Linux build host.
+The previous version's failure proves build/static checks are not a substitute for
+Windows runtime checks. GUI launch succeeded on the user's screenshots; saving and
+SSH require confirmation after this fix. Original reports remain under docs/history.

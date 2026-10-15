@@ -1,0 +1,24 @@
+LETHE ONE 0.6.0, 2026-10-13
+Environment: Linux; PowerShell 7.6.6 / Roslyn; .NET Framework 4.8 reference assemblies.
+
+PASS PowerShell syntax parser for all .ps1 files.
+PASS Python unit tests: 14/14.
+PASS bootstrap.sh shell syntax.
+PASS C# compilation: LETHE.exe + Lethe.SshTransport.dll.
+PASS EXE format: AMD64 GUI, version resource, embedded asInvoker manifest.
+PASS Caddy v2.11.7-naive archive SHA-256, adapt, validate.
+PASS Local TLS/authenticated CONNECT: HTTP 200; body delivered.
+PASS Local TLS/anonymous CONNECT: HTTP 404; tunnel denied.
+PASS SSH: untrusted fingerprint probe, mismatched host key rejected.
+PASS SSH: password authentication and command output protocol.
+PASS SFTP: exact uploaded content and mode 0600.
+PASS SSH: private Ed25519 OpenSSH key authentication.
+PASS original engine files SHA-256 match source archive.
+PASS bundled Wintun SHA-256 matches official 0.14.1 AMD64 distribution.
+
+SSH integration used the same SSH.NET version's net10 assembly for Linux.
+Windows net462 loading is included in tests/Test-Project.ps1 (run by BUILD.cmd).
+
+NOT RUN: Windows GUI/UAC/DPAPI/TUN, install/rollback on real VPS,
+public certificate issuance/renewal, systemd reboot, nftables SNAT on VPS,
+Inno Setup compilation/install/uninstall. See WINDOWS-CHECK.md.

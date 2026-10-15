@@ -1,0 +1,27 @@
+LETHE ONE 0.7.0 — 2026-10-14
+Build environment: Linux, PowerShell 7.4.6/Roslyn.
+Targets: .NET Framework 4.8 + Windows PowerShell 5 reference assemblies.
+
+PASS: LETHE.exe C# compilation, Windows x64 GUI subsystem, version 0.7.0.0.
+PASS: Lethe.Ui.dll compilation (rounded controls and console-free engine launcher).
+PASS: PowerShell syntax parser over all packaged PS1 files.
+PASS: Native guardian identity matching; unrelated process/mode/path rejection.
+PASS: Python server/removal tests, 29/29.
+  Existing server validation, authentication/config rendering and installer safeguards: 14.
+  Removal on real temporary filesystem trees with simulated system services: 15.
+  Native and legacy layout removal, certificate/data/device/history/backup deletion,
+  unrelated files preserved, stale/wrong confirmation rejected, foreign installation,
+  symlink/mount/shared-account/changed-unit guards, service-stop failure,
+  partial removal and retry, replaced file after failed removal, two installations.
+PASS: shell syntax for bootstrap.sh.
+PASS: archive manifest and unchanged third-party engine/dependency hashes.
+
+NOT RUN: Windows graphical window, actual hover/rounding/DPI rendering,
+UAC, DPAPI, hosted Windows PowerShell runtime, Win32 hidden process launch,
+real TUN connect/disconnect, SSH deployment/removal on an actual VPS,
+systemd/nftables/user-account deletion against a live server.
+Windows checks are included in tests/Test-Project.ps1 and docs/WINDOWS-CHECK.md.
+Build and isolated tests do not substitute for those platform checks.
+
+The original 0.6.0 transport/SSH integration report is kept in docs/history.
+Those integration tests were not rerun for 0.7.0. No user's VPS was contacted or modified.
